@@ -4,3 +4,6 @@
 !README.md
 !UWG_Checks.xml
 !suppressions.xml
+!/sysadmin_autograder
+!/sysadmin_autograder/scripts
+!/sysadmin_autograder/scripts/*
