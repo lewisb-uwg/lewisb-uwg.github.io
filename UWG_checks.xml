@@ -5,19 +5,22 @@
     This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-    Checkstyle-Configuration: UWG Checkstyle
+    Checkstyle-Configuration: Ana
     Description: none
 -->
 <module name="Checker">
   <property name="severity" value="warning"/>
-  <property name="tabWidth" value="4"/>
   <module name="TreeWalker">
-    <module name="JavadocMethod">
-      <property name="accessModifiers" value="public"/>
+    <module name="MissingJavadocMethod"/>
+    <module name="MissingJavadocType"/>
+    <module name="NonEmptyAtclauseDescription">
+      <property name="javadocTokens" value="PARAM_LITERAL,RETURN_LITERAL"/>
     </module>
+    <module name="JavadocMethod"/>
     <module name="JavadocType">
       <property name="scope" value="public"/>
       <property name="authorFormat" value="\S"/>
+      <property name="versionFormat" value="\S"/>
       <message key="type.tagFormat" value="Type Javadoc tag {0} is empty."/>
     </module>
     <module name="JavadocVariable">
@@ -33,8 +36,8 @@
       <message key="name.invalidPattern" value="Constant name ''{0}'' should be all upper case letters, digits and underscores."/>
     </module>
     <module name="LocalVariableName">
-      <property name="format" value="^[a-z][a-zA-Z0-9]+|(e|i|j|k|x|y)$"/>
-      <message key="name.invalidPattern" value="Variable name ''{0}'' should start with a lower case letter and use only letters and digits. The only one letter names allowed is e, i, j, k, x, and y."/>
+      <property name="format" value="^[a-z][a-zA-Z0-9]+$"/>
+      <message key="name.invalidPattern" value="Variable name ''{0}'' should start with a lower case letter and use only letters and digits. It must have more than one letter."/>
     </module>
     <module name="MemberName">
       <property name="format" value="^[a-z][a-zA-Z0-9]+$"/>
@@ -44,7 +47,7 @@
       <message key="name.invalidPattern" value="Method name ''{0}'' should start with a lower case letter and use only letters and digits."/>
     </module>
     <module name="ParameterName">
-      <property name="format" value="^[a-z][a-zA-Z0-9]+|(x|y)$"/>
+      <property name="format" value="^[a-z][a-zA-Z0-9]+$"/>
       <message key="name.invalidPattern" value="Parameter names ''{0}'' should start with a lower case letter and use only letters and digits. It must have more than one letter."/>
     </module>
     <module name="StaticVariableName">
@@ -54,12 +57,16 @@
     <module name="TypeName">
       <message key="name.invalidPattern" value="Class name ''{0}'' should start with a capital letter and use only letters and digits."/>
     </module>
+    <module name="CatchParameterName">
+      <property name="format" value="^[a-z][a-zA-Z0-9]+$"/>
+      <message key="name.invalidPattern" value="Catch parameters ''{0}'' should start with a lower case letter and use only letters and digits. It must have more than one letter."/>
+    </module>
     <module name="AvoidStarImport"/>
     <module name="IllegalImport"/>
     <module name="RedundantImport"/>
     <module name="UnusedImports"/>
     <module name="MethodLength">
-      <property name="max" value="35"/>
+      <property name="max" value="60"/>
     </module>
     <module name="ParameterNumber">
       <property name="max" value="6"/>
@@ -68,6 +75,7 @@
     <module name="EmptyForIteratorPad"/>
     <module name="GenericWhitespace"/>
     <module name="MethodParamPad"/>
+    <module name="OneStatementPerLine"/>
     <module name="NoWhitespaceAfter">
       <property name="tokens" value="BNOT,DEC,DOT,INC,LNOT,UNARY_MINUS,UNARY_PLUS"/>
     </module>
@@ -86,14 +94,15 @@
     <module name="LeftCurly"/>
     <module name="NeedBraces"/>
     <module name="RightCurly"/>
+    <module name="AvoidInlineConditionals"/>
     <module name="EmptyStatement"/>
-    <module name="EqualsHashCode"/>
     <module name="HiddenField">
       <property name="severity" value="ignore"/>
       <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
     <module name="IllegalInstantiation"/>
     <module name="InnerAssignment"/>
+    <module name="MultipleVariableDeclarations"/>
     <module name="MagicNumber">
       <property name="severity" value="ignore"/>
       <message key="magic.number" value="''{0}'' is a magic value."/>
@@ -114,26 +123,33 @@
     </module>
     <module name="InterfaceIsType"/>
     <module name="VisibilityModifier"/>
+    <module name="DeclarationOrder"/>
     <module name="Indentation">
-      <property name="severity" value="warning"/>
+      <property name="severity" value="ignore"/>
       <property name="lineWrappingIndentation" value="2"/>
-    </module>
-    <module name="MultipleStringLiterals">
-      <property name="ignoreStringsRegexp" value="^(&quot;&quot;|&quot;\\n&quot;|&quot; &quot;)$"/>
-      <property name="ignoreOccurrenceContext" value="METHOD_CALL,ANNOTATION"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="warning"/>
     </module>
     <module name="NestedIfDepth"/>
     <module name="RequireThis">
       <property name="validateOnlyOverlapping" value="false"/>
     </module>
     <module name="TrailingComment"/>
-    <module name="ArrayTypeStyle"/>
-    <module name="TodoComment">
-      <property name="format" value="TODO"/>
+    <module name="Indentation">
+      <property name="severity" value="ignore"/>
+      <property name="lineWrappingIndentation" value="2"/>
+      <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
     </module>
+    <module name="ArrayTypeStyle"/>
     <module name="UpperEll"/>
-    <module name="JavadocMethod">
-      <property name="accessModifiers" value="public"/>
+    <module name="CommentsIndentation"/>
+    <module name="SuppressWarnings">
+      <property name="format" value="^$|^\s+$"/>
+      <property name="tokens" value=" CLASS_DEF,INTERFACE_DEF,ENUM_DEF, ANNOTATION_DEF,ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF,METHOD_DEF,CTOR_DEF "/>
+    </module>
+    <module name="EmptyLineSeparator">
+      <property name="allowNoEmptyLineBetweenFields" value="true"/>
+      <property name="allowMultipleEmptyLines" value="false"/>
+      <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
     </module>
   </module>
   <module name="LineLength">
@@ -160,7 +176,10 @@
     <property name="message" value="Line has trailing spaces."/>
     <metadata name="net.sf.eclipsecs.core.lastEnabledSeverity" value="inherit"/>
   </module>
-  <module name="SuppressionFilter">
-    <property name="file" value="https://lewisb-uwg.github.io/suppressions.xml"/>
+  <module name="BeforeExecutionExclusionFileFilter">
+    <property name="fileNamePattern" value="[\\/]test[\\/]"/>
+  </module>
+  <module name="BeforeExecutionExclusionFileFilter">
+    <property name="fileNamePattern" value="module\-info\.java$"/>
   </module>
 </module>
