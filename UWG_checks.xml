@@ -37,7 +37,7 @@
     </module>
     <module name="LocalVariableName">
       <property name="format" value="^[a-z][a-zA-Z0-9]+$"/>
-      <property name="allowOneCharVarInForLoop"/>
+      <property name="allowOneCharVarInForLoop" value="true"/>
       <message key="name.invalidPattern" value="Variable name ''{0}'' should start with a lower case letter and use only letters and digits. It must have more than one letter."/>
     </module>
     <module name="MemberName">
