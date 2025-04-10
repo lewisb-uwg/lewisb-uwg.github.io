@@ -12,7 +12,7 @@
     
 async function loadPageIntoDiv(pageUrl, divId) {
   try {
-    const response = await fetch(pageUrl);
+    const response = await fetch(pageUrl, { mode: 'no-cors' });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
